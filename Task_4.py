@@ -28,39 +28,23 @@ class Car:
 
 
 class TownCar(Car):
-    speed = Car
-    color = Car
-    name = Car
-    is_police = Car
-
     def show_speed(self, speed):
         if speed > 60:
             print(f'Скорость автомобиля: {speed}\nTownCar движется с превышением скорости')
 
 
 class SportCar(Car):
-    speed = Car
-    color = Car
-    name = Car
-    is_police = Car
+    pass
 
 
 class WorkCar(Car):
-    speed = Car
-    color = Car
-    name = Car
-    is_police = Car
-
     def show_speed(self, speed):
         if speed > 40:
             print(f'Скорость автомобиля: {speed}\nTownCar движется с превышением скорости')
 
 
 class PoliceCar(Car):
-    speed = Car
-    color = Car
-    name = Car
-    is_police = Car
+    pass
 
 
 tc = TownCar(120, 'Green', 'Lada', False)
@@ -90,7 +74,6 @@ wc.go()
 wc.show_speed(41)
 print('-' * 150)
 
-
 pc = PoliceCar(210, 'Black', 'Ford', True)
 print(f'Скорость: {pc.speed}')
 print(f'Цвет: {pc.color}')
@@ -103,7 +86,3 @@ pc.go()
 pc.show_speed(25)
 pc.show_speed(0)
 pc.stop()
-
-
-
-

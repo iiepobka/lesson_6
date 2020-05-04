@@ -13,22 +13,16 @@ class Stationery:
 
 
 class Pen(Stationery):
-    title = Stationery
-
     def draw(self):
         print(f'Запуск отрисовки {self.title}')
 
 
 class Pencil(Stationery):
-    title = Stationery
-
     def draw(self):
         print(f'Запуск отрисовки {self.title}')
 
 
 class Handle(Stationery):
-    title = Stationery
-
     def draw(self):
         print(f'Запуск отрисовки {self.title}')
 
@@ -36,17 +30,17 @@ class Handle(Stationery):
 stationery = Stationery('some object')
 print(f'Наименование канцелярской принадлежности: {stationery.title}')
 stationery.draw()
-print('*' * 150)
+print('_' * 150)
 
 pen = Pen('pen')
 print(f'Наименование канцелярской принадлежности: {pen.title}')
 pen.draw()
-print('*' * 150)
+print('_' * 150)
 
 pencil = Pencil('pencil')
 print(f'Наименование канцелярской принадлежности: {pencil.title}')
 pencil.draw()
-print('*' * 150)
+print('_' * 150)
 
 handle = Handle('handle')
 print(f'Наименование канцелярской принадлежности: {handle.title}')

@@ -14,6 +14,7 @@ from time import sleep
 
 class TrafficLight:
     count = 0
+    error = 0
 
     def __init__(self, __color):
         self.__color = __color
@@ -22,10 +23,21 @@ class TrafficLight:
         time_delta = 0
         start = datetime.datetime.now()
         start_second = start.second
-        print(self._TrafficLight__color)
         TrafficLight.count += 1
 
-        while time_delta != seconds:
+        if TrafficLight.count == 1 and t._TrafficLight__color == '\33[41m \33[31m___ \33[0m' and TrafficLight.error == 0:
+            print(self._TrafficLight__color)
+            self._TrafficLight__color = '\33[43m \33[33m___ \33[0m'
+        elif TrafficLight.count == 2 and t._TrafficLight__color == '\33[43m \33[33m___ \33[0m' and TrafficLight.error == 0:
+            print(self._TrafficLight__color)
+            self._TrafficLight__color = '\33[42m \33[32m___ \33[0m'
+        elif TrafficLight.count == 3 and t._TrafficLight__color == '\33[42m \33[32m___ \33[0m' and TrafficLight.error == 0:
+            print(self._TrafficLight__color)
+        else:
+            TrafficLight.error = 'error'
+            print('Ошибка. Нарушен порядок загорания сигналов')
+
+        while time_delta != seconds and TrafficLight.error == 0:
             if start_second + seconds <= 59:
                 stop = datetime.datetime.now()
                 stop_second = stop.second
@@ -34,26 +46,12 @@ class TrafficLight:
                 stop = datetime.datetime.now()
                 stop_second = stop.second + 60
                 time_delta = abs(start_second - stop_second)
-        else:
-            if seconds == 7:
-                self._TrafficLight__color = '\33[43m \33[33m___ \33[0m'
-            elif seconds == 2:
-                self._TrafficLight__color = '\33[42m \33[32m___ \33[0m'
-            elif seconds == 5:
-                pass
 
 
 t = TrafficLight('\33[41m \33[31m___ \33[0m')
-if t.count == 0 and t._TrafficLight__color == '\33[41m \33[31m___ \33[0m':
-    t.running(7)
-
-if t.count == 1 and t._TrafficLight__color == '\33[43m \33[33m___ \33[0m':
-    t.running(2)
-
-if t.count == 2 and t._TrafficLight__color == '\33[42m \33[32m___ \33[0m':
-    t.running(5)
-else:
-    print('Ошибка. Нарушен порядок загорания сигналов')
+t.running(7)
+t.running(2)
+t.running(5)
 
 # Более короткий вариант решения
 print('Второй вариант решения')
@@ -61,36 +59,37 @@ print('Второй вариант решения')
 
 class TrafficLight:
     count = 0
+    error = 0
 
     def __init__(self, __color):
         self.__color = __color
 
     def running(self):
-        print(self._TrafficLight__color)
-
-        if TrafficLight.count == 0:
+        if TrafficLight.count == 0 and t._TrafficLight__color == '\33[41m \33[31m___ \33[0m' \
+                and TrafficLight.error == 0:
+            print(self._TrafficLight__color)
+            sleep(7)
             self._TrafficLight__color = '\33[43m \33[33m___ \33[0m'
-        elif TrafficLight.count == 1:
+        elif TrafficLight.count == 1 and t._TrafficLight__color == '\33[43m \33[33m___ \33[0m' \
+                and TrafficLight.error == 0:
+            print(self._TrafficLight__color)
+            sleep(2)
             self._TrafficLight__color = '\33[42m \33[32m___ \33[0m'
+        elif TrafficLight.count == 2 and t._TrafficLight__color == '\33[42m \33[32m___ \33[0m' \
+                and TrafficLight.error == 0:
+            print(self._TrafficLight__color)
+            sleep(5)
         else:
-            pass
+            TrafficLight.error = 'error'
+            print('Ошибка. Нарушен порядок загорания сигналов')
+
         TrafficLight.count += 1
 
 
 t = TrafficLight('\33[41m \33[31m___ \33[0m')
-if t.count == 0 and t._TrafficLight__color == '\33[41m \33[31m___ \33[0m':
-    t.running()
-    sleep(7)
-
-if t.count == 1 and t._TrafficLight__color == '\33[43m \33[33m___ \33[0m':
-    t.running()
-    sleep(2)
-
-if t.count == 2 and t._TrafficLight__color == '\33[42m \33[32m___ \33[0m':
-    t.running()
-    sleep(5)
-else:
-    print('Ошибка. Нарушен порядок загорания сигналов')
+t.running()
+t.running()
+t.running()
 
 # https://en.wikipedia.org/wiki/ANSI_escape_code
 # https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
